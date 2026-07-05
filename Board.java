@@ -2,6 +2,8 @@ public class Board {
     private Marker[][] grid;
     private static final int ROWS = 3;
     private static final int COLUMNS = 3;
+    private static final int MAX_LINE = 3;
+    private static final int MAX_WINCONS = 8;
 
     public Board() {
         this.grid = new Marker[ROWS][COLUMNS];
@@ -53,5 +55,41 @@ public class Board {
         }
 
         return isFull;
+    }
+
+    public boolean isWinner(Marker m) {
+        boolean hasWon = false;
+        int[] scores = new int[MAX_WINCONS];
+        int offset = 2;
+        int i;
+
+        for(i = 0; i < MAX_LINE; i++) {
+            if(grid[0][i] == m)
+                scores[0]++;
+            if(grid[1][i] == m)
+                scores[1]++;
+            if(grid[2][i] == m)
+                scores[2]++;
+            if(grid[i][0] == m)
+                scores[3]++;
+            if(grid[i][1] == m)
+                scores[4]++;
+            if(grid[i][2] == m)
+                scores[5]++;
+            if(grid[i][i] == m)
+                scores[6]++;
+            if(grid[i][offset] == m)
+                scores[7]++;
+            offset--;
+        }
+
+        for(i = 0; i < MAX_WINCONS; i++) {
+            if(scores[i] == MAX_LINE) {
+                hasWon = true;
+                i = MAX_WINCONS;
+            }
+        }
+
+        return hasWon;
     }
 }

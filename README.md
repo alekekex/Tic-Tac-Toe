@@ -30,7 +30,7 @@ A console-based Tic-Tac-Toe game written in Java. This project was created to pr
 1. Clone the repository:
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/alekekex/TicTacToe.git
 ```
 
 2. Change to the project directory:

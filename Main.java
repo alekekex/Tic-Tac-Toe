@@ -1,4 +1,3 @@
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
@@ -7,7 +6,7 @@ public class Main {
         boolean isRunning = true;
 
         while(isRunning) {
-            displayIntro();
+            displayMenu();
             int choice = Input.getIntInput(sc, 1, 3);
             boolean canPlay = false;
             Player p1 = null;
@@ -47,7 +46,7 @@ public class Main {
         sc.close();
     }
 
-    public static void displayIntro() {
+    public static void displayMenu() {
         System.out.println("Welcome to Tic Tac Toe!");
         System.out.println("Choose an option:");
         System.out.println("1. Player vs Player");

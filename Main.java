@@ -7,30 +7,54 @@ public class Main {
         boolean isRunning = true;
 
         while(isRunning) {
-            System.out.println("Welcome to Tic Tac Toe!");
+            System.out.println("Welcome to Tic Tac Toe!");//intro still needs its own method
             System.out.println("Choose an option:");
             System.out.println("1. Player vs Player");
             System.out.println("2. Player vs AI");
             System.out.println("3. Exit the Game");
-            boolean isValid = false;
+            int choice = getIntInput(sc, 1, 3);
+            boolean canPlay = false;
 
-            do {
-                try {
-                    int choice = sc.nextInt();
-                    sc.nextLine();
+            switch(choice) {
+                case 1:
+                    //player vs player setup
+                    canPlay = true;
+                    break;
+                case 2:
+                    //player vs ai setup
+                    canPlay = true;
+                    break;
+                case 3:
+                    System.out.println("Exiting the program. Goodbye!");
+                    isRunning = false;
+                    break;
+            }
 
-                    if(!(choice >= 1 && choice <= 3))
-                        System.out.println("Invalid option! Please try again.");
-                    else isValid = true;
-                } catch(InputMismatchException e) {
-                    System.out.println("Invalid input! Please try again.");
-                    sc.nextLine();
-                }
-            } while(!isValid);
-
-            //play the game
+            /*if(canPlay)
+                play game*/
         }
 
         sc.close();
+    }
+
+    public static int getIntInput(Scanner sc, int min, int max) {
+        int n = -1;
+        boolean isValid = false;
+
+        do {
+            try {
+                n = sc.nextInt();
+                sc.nextLine();
+
+                if(!(n >= min && n <= max))
+                    System.out.println("Invalid option! Please try again.");
+                else isValid = true;
+            } catch(InputMismatchException e) {
+                System.out.println("Invalid input! Please enter a number.");
+                sc.nextLine();
+            }
+        } while(!isValid);
+
+        return n;
     }
 }

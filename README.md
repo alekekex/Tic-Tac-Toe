@@ -7,8 +7,7 @@ A console-based Tic-Tac-Toe game written in Java. This project was created to pr
 - Two-player turn-based gameplay
 - 3×3 game board
 - Input validation
-- Win detection
-- Draw detection
+- Win and draw detection
 - Player markers (X and O)
 
 ## Technologies

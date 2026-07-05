@@ -7,21 +7,29 @@ public class Main {
         boolean isRunning = true;
 
         while(isRunning) {
-            System.out.println("Welcome to Tic Tac Toe!");//intro still needs its own method
-            System.out.println("Choose an option:");
-            System.out.println("1. Player vs Player");
-            System.out.println("2. Player vs AI");
-            System.out.println("3. Exit the Game");
-            int choice = getIntInput(sc, 1, 3);
+            displayIntro();
+            int choice = Input.getIntInput(sc, 1, 3);
             boolean canPlay = false;
+            Player p1 = null;
+            Player p2 = null;
 
             switch(choice) {
                 case 1:
-                    //player vs player setup
+                    p1 = new Player("Player 1", new Marker('X'));
+                    p2 = new Player("Player 2", new Marker('O'));
                     canPlay = true;
                     break;
                 case 2:
-                    //player vs ai setup
+                    System.out.println("Choose your marker (X or O)");
+                    char temp = Input.getCharInput(sc);
+                    if(temp == 'X') {
+                        p1 = new Player("Player 1", new Marker('X'));
+                        p2 = new Player(new Marker('O'));
+                    }
+                    else if(temp == 'O') {
+                        p1 = new Player(new Marker('X'));
+                        p2 = new Player("Player 2", new Marker('O'));
+                    }
                     canPlay = true;
                     break;
                 case 3:
@@ -30,31 +38,20 @@ public class Main {
                     break;
             }
 
-            /*if(canPlay)
-                play game*/
+            if(canPlay){
+                TicTacToe game = new TicTacToe(p1, p2);
+                game.playGame(sc);
+            }
         }
 
         sc.close();
     }
 
-    public static int getIntInput(Scanner sc, int min, int max) {
-        int n = -1;
-        boolean isValid = false;
-
-        do {
-            try {
-                n = sc.nextInt();
-                sc.nextLine();
-
-                if(!(n >= min && n <= max))
-                    System.out.println("Invalid option! Please try again.");
-                else isValid = true;
-            } catch(InputMismatchException e) {
-                System.out.println("Invalid input! Please enter a number.");
-                sc.nextLine();
-            }
-        } while(!isValid);
-
-        return n;
+    public static void displayIntro() {
+        System.out.println("Welcome to Tic Tac Toe!");
+        System.out.println("Choose an option:");
+        System.out.println("1. Player vs Player");
+        System.out.println("2. Player vs AI");
+        System.out.println("3. Exit the Game");
     }
 }

@@ -7,7 +7,7 @@ public class Main {
 
         while(isRunning) {
             displayMenu();
-            int choice = Input.getIntInput(sc, 1, 3);
+            int choice = Input.getIntChoice(sc, 1, 3);
             boolean canPlay = false;
             Player p1 = null;
             Player p2 = null;
@@ -20,7 +20,7 @@ public class Main {
                     break;
                 case 2:
                     System.out.println("Choose your marker (X or O)");
-                    char temp = Input.getCharInput(sc);
+                    char temp = Input.getCharChoice(sc);
                     if(temp == 'X') {
                         p1 = new Player("Player 1", new Marker('X'));
                         p2 = new Player(new Marker('O'));

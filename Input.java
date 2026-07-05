@@ -2,7 +2,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Input {
-    public static int getIntInput(Scanner sc, int min, int max) {
+    public static int getIntChoice(Scanner sc, int min, int max) {
         int n = -1;
         boolean isValid = false;
 
@@ -23,7 +23,7 @@ public class Input {
         return n;
     }
 
-    public static char getCharInput(Scanner sc) {
+    public static char getCharChoice(Scanner sc) {
         char c;
 
         do {

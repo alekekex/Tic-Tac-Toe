@@ -10,7 +10,7 @@ public class Main {
             System.out.println("Welcome to Tic Tac Toe!");
             System.out.println("Choose an option:");
             System.out.println("1. Player vs Player");
-            System.out.println("2. Player vs Computer");
+            System.out.println("2. Player vs AI");
             System.out.println("3. Exit the Game");
             boolean isValid = false;
 

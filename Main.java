@@ -20,12 +20,11 @@ public class Main {
                     break;
                 case 2:
                     System.out.println("Choose your marker (X or O)");
-                    char temp = Input.getCharChoice(sc);
-                    if(temp == 'X') {
+                    if(Input.getCharChoice(sc) == 'X') {
                         p1 = new Player("Player 1", new Marker('X'));
                         p2 = new Player(new Marker('O'));
                     }
-                    else if(temp == 'O') {
+                    else if(Input.getCharChoice(sc) == 'O') {
                         p1 = new Player(new Marker('X'));
                         p2 = new Player("Player 2", new Marker('O'));
                     }

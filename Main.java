@@ -20,14 +20,17 @@ public class Main {
                     break;
                 case 2:
                     System.out.println("Choose your marker (X or O)");
-                    if(Input.getCharChoice(sc) == 'X') {
+                    char marker = Input.getCharChoice(sc);
+
+                    if(marker == 'X') {
                         p1 = new Player("Player 1", new Marker('X'));
                         p2 = new Player(new Marker('O'));
                     }
-                    else if(Input.getCharChoice(sc) == 'O') {
+                    else if(marker == 'O') {
                         p1 = new Player(new Marker('X'));
                         p2 = new Player("Player 2", new Marker('O'));
                     }
+
                     canPlay = true;
                     break;
                 case 3:
@@ -36,7 +39,7 @@ public class Main {
                     break;
             }
 
-            if(canPlay){
+            if(canPlay) {
                 TicTacToe game = new TicTacToe(p1, p2);
                 game.playGame(sc);// not yet finished
             }

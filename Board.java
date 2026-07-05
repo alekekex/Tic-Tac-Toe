@@ -40,4 +40,18 @@ public class Board {
 
         return isPlaced;
     }
+
+    public boolean isBoardFull() {
+        boolean isFull = true;
+        int i, j;
+
+        for(i = 0; i < ROWS; i++) {
+            for(j = 0; j < COLUMNS; j++) {
+                if(grid[i][j].getSymbol() == ' ')
+                    isFull = false;
+            }
+        }
+
+        return isFull;
+    }
 }

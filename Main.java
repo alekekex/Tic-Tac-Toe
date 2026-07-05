@@ -39,7 +39,7 @@ public class Main {
 
             if(canPlay){
                 TicTacToe game = new TicTacToe(p1, p2);
-                game.playGame(sc);
+                game.playGame(sc);// not yet finished
             }
         }
 

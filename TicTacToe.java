@@ -28,7 +28,8 @@ public class TicTacToe {
             isGameOver = checkIfGameOver();
         }
 
-        displayGameOver();
+        if(isGameOver)
+            displayGameOver();
     }
 
     public void displayGameState() {
@@ -95,14 +96,12 @@ public class TicTacToe {
     }
 
     public void displayGameOver() {
-        if(isGameOver) {
-            System.out.println();
-            System.out.println(">>> GAME OVER <<<");
-            b.displayBoard();
+        System.out.println();
+        System.out.println(">>> GAME OVER <<<");
+        b.displayBoard();
 
-            if(b.isWinner(p[playerIdx].getM()))
-                System.out.println(p[playerIdx].getName() + " has won the game!\n");
-            else System.out.println("It's a tie!\n");
-        }
+        if(b.isWinner(p[playerIdx].getM()))
+            System.out.println(p[playerIdx].getName() + " has won the game!\n");
+        else System.out.println("It's a tie!\n");
     }
 }

@@ -6,11 +6,11 @@ public class Main {
         boolean isRunning = true;
 
         while(isRunning) {
-            System.out.println("Welcome to Tic Tac Toe!");
-            System.out.println("Choose an option:");
-            System.out.println("1. Player vs Player");
-            System.out.println("2. Player vs AI");
-            System.out.println("3. Exit the Game");
+            System.out.println(">>> TIC TAC TOE <<<");
+            System.out.println();
+            System.out.println("[1] Player vs Player");
+            System.out.println("[2] Player vs AI");
+            System.out.println("[3] Exit the Game");
             int choice = Input.getIntChoice(sc, 1, 3);
             boolean canPlay = false;
             Player p1 = null;
@@ -38,7 +38,9 @@ public class Main {
                     canPlay = true;
                     break;
                 case 3:
-                    System.out.println("Exiting the program. Goodbye!");
+                    System.out.println(">>> SESSION ENDED <<<");
+                    System.out.println();
+                    System.out.println("Thank for playing!");
                     isRunning = false;
                     break;
             }

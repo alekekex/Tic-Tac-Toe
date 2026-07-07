@@ -68,7 +68,7 @@ public class TicTacToe {
 
         if(isGameOver) {
             System.out.println();
-            System.out.println("Game Over!");
+            System.out.println(">>> GAME OVER <<<");
             b.displayBoard();
 
             if(b.isWinner(p[playerIdx].getM()))

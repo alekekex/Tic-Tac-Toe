@@ -20,52 +20,82 @@ public class TicTacToe {
     }
 
     public void playGame(Scanner sc) {
-        Random rnd = new Random();
         b.initializeBoard();
 
         while(!isGameOver) {
-            System.out.println();
-            b.displayBoard();
-            System.out.println(p[playerIdx].getName() + "\'s turn (" + p[playerIdx].getM().getSymbol() + ")");
-            boolean isValid = false;
-            int row, column;
-
-            if(p[playerIdx].isAI()) {
-                System.out.println(p[playerIdx].getName() + " is thinking...");
-
-                try {
-                    Thread.sleep(1500);
-                } catch(InterruptedException e) {
-                    Thread.currentThread().interrupt();
-                }
-            }
-
-            while(!isValid) {
-                if(p[playerIdx].isAI()) {
-                    row = rnd.nextInt(MAX) + MIN;
-                    column = rnd.nextInt(MAX) + MIN;
-                }
-                else {
-                    System.out.println("Enter row (Range 1-3)");
-                    row = Input.getIntChoice(sc, MIN, MAX);
-                    System.out.println("Enter column (Range 1-3)");
-                    column = Input.getIntChoice(sc, MIN, MAX);
-                }
-
-                isValid = b.placeMarker(p[playerIdx].getM(), row, column);
-
-                if(isValid)
-                    System.out.println("Move: (" + row + "," + column + ")");
-                else if (!(p[playerIdx].isAI()))
-                    System.out.println("That spot is already taken! Try again.");
-            }
-
-
-            if(b.isWinner(p[playerIdx].getM()) || b.isBoardFull())
-                isGameOver = true;
-            else switchTurn();
+            displayGameState();
+            boolean isAI = checkIfAI();
+            makeTurn(sc, isAI);
+            isGameOver = checkIfGameOver();
         }
 
+        displayGameOver();
+    }
+
+    public void displayGameState() {
+        System.out.println();
+        b.displayBoard();
+        System.out.println(p[playerIdx].getName() + "\'s turn (" + p[playerIdx].getM().getSymbol() + ")");
+    }
+
+    public boolean checkIfAI() {
+        boolean isAI = false;
+
+        if(p[playerIdx].isAI()) {
+            isAI = true;
+            System.out.println(p[playerIdx].getName() + " is thinking...");
+
+            try {
+                Thread.sleep(1500);
+            } catch(InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
+        }
+
+        return isAI;
+    }
+
+    public void makeTurn(Scanner sc, boolean isAI) {
+        Random rnd = new Random();
+        boolean isValid = false;
+        int r, c;
+
+        while(!isValid) {
+            if(isAI) {
+                r = rnd.nextInt(MAX) + MIN;
+                c = rnd.nextInt(MAX) + MIN;
+            }
+            else {
+                System.out.println("Enter row (Range 1-3)");
+                r = Input.getIntChoice(sc, MIN, MAX);
+                System.out.println("Enter column (Range 1-3)");
+                c = Input.getIntChoice(sc, MIN, MAX);
+            }
+
+            isValid = b.placeMarker(p[playerIdx].getM(), r, c);
+
+            if(isValid)
+                System.out.println("Move: (" + r + "," + c + ")");
+            else if (!(p[playerIdx].isAI()))
+                System.out.println("That spot is already taken! Try again.");
+        }
+    }
+
+    public void switchTurn() {
+        playerIdx = 1 - playerIdx;
+    }
+
+    public boolean checkIfGameOver() {
+        boolean isGameOver = false;
+
+        if(b.isWinner(p[playerIdx].getM()) || b.isBoardFull())
+            isGameOver = true;
+        else switchTurn();
+
+        return isGameOver;
+    }
+
+    public void displayGameOver() {
         if(isGameOver) {
             System.out.println();
             System.out.println(">>> GAME OVER <<<");
@@ -75,9 +105,5 @@ public class TicTacToe {
                 System.out.println(p[playerIdx].getName() + " has won the game!\n");
             else System.out.println("It's a tie!\n");
         }
-    }
-
-    public void switchTurn() {
-        playerIdx = 1 - playerIdx;
     }
 }

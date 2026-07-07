@@ -24,8 +24,7 @@ public class TicTacToe {
 
         while(!isGameOver) {
             displayGameState();
-            boolean isAI = checkIfAI();
-            makeTurn(sc, isAI);
+            makeTurn(sc, checkIfAI());
             isGameOver = checkIfGameOver();
         }
 

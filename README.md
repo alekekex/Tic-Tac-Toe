@@ -65,3 +65,7 @@ TicTacToe/
 ├── .gitignore
 └── README.md
 ```
+
+## License
+
+This project was created for learning, personal practice, and fun.
